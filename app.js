@@ -6,6 +6,8 @@ searchInput.addEventListener("keypress", function(e) {
     searchTerm = searchInput.value;
     console.log("Success!");
     console.log(searchInput.value);
+    document.getElementById("thumbnail").src = "";
+
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${searchTerm}`)
       .then(response => {
         return response.json();
@@ -15,10 +17,13 @@ searchInput.addEventListener("keypress", function(e) {
 
         document.getElementById("title").innerHTML = data.title;
         document.getElementById("extract").innerHTML = data.extract;
-        document.getElementById("thumbnail").src = data.thumbnail.source;
+
+        thumbnail = document.getElementById("thumbnail").src =
+          data.thumbnail.source;
+
         // thumbnailImage.src = data.thumbnail.source;
       });
   }
 });
 
-// "https://en.wikipedia.org/api/rest_v1/page/summary/china"
+// "https://en.wikipedia.org/api/rest_v1/page/summary/sword"
